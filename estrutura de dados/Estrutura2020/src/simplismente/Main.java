@@ -5,14 +5,13 @@ import dados.Item;
 public class Main {
 	public static void main(String[] args) {
 		ListaSimples lista = new ListaSimples();
-		lista.add(new Item(5), new Item(6), new Item(2));
+		ListaSimples simples = new ListaSimples();
+		lista.add(new Item(2), new Item(3), new Item(10), new Item(88), new Item(89));
+		simples.add(new Item(2), new Item(3), new Item(10), new Item(88));
 
-		System.out.println(lista.toString());
-		lista.addNoComeco(new Item(0));
-
-		System.out.println(lista.toString());
-		System.out.println("2-> ");
-		System.out.println(lista.toString());
-
+		if (lista.estaContida(simples))
+			System.out.println("deu certo");
+		System.out.println("lista 1->" + lista.toString());
 	}
+
 }
