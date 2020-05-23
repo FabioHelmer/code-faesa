@@ -77,26 +77,6 @@ public class ListaDupla {
 		this.quantNos++;
 	}
 
-	public boolean isPalindroma() {
-		if (this.isVazia()) {
-			return false;
-		} else {
-			No atualCrescente = this.prim;
-			No atualDecresente = this.ult;
-			String msg1 = "";
-			String msg2 = "";
-			for (int i = 0; i < this.quantNos; i++) {
-				msg1 += atualCrescente.getInfo().getChaveChar();
-				msg2 += atualDecresente.getInfo().getChaveChar();
-				atualCrescente = atualCrescente.getProx();
-				atualDecresente = atualDecresente.getAnt();
-			}
-			if (!msg1.equals(msg2))
-				return false;
-			return true;
-		}
-	}
-
 	public void copiaLista(ListaDupla listaDupla) {
 		No atual = this.prim;
 		for (int i = 0; i < this.quantNos; i++) {
@@ -112,16 +92,6 @@ public class ListaDupla {
 		No atual = this.prim;
 		while (atual != null) {
 			msg += atual.getInfo().getChave() + "\n";
-			atual = atual.getProx();
-		}
-		return msg;
-	}
-
-	public String toStringChar() {
-		String msg = "";
-		No atual = this.prim;
-		while (atual != null) {
-			msg += atual.getInfo().getChaveChar();
 			atual = atual.getProx();
 		}
 		return msg;

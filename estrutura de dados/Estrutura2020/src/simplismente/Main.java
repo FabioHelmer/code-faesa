@@ -5,13 +5,13 @@ import dados.Item;
 public class Main {
 	public static void main(String[] args) {
 		ListaSimples lista = new ListaSimples();
-		ListaSimples simples = new ListaSimples();
-		lista.add(new Item(2), new Item(3), new Item(10), new Item(88), new Item(89));
-		simples.add(new Item(2), new Item(3), new Item(10), new Item(88));
+		ListaSimples l2 = new ListaSimples();
+		ListaSimples l3 = new ListaSimples();
+		lista.add(new Item(1), new Item(2), new Item(101), new Item(4), new Item(5));
 
-		if (lista.estaContida(simples))
-			System.out.println("deu certo");
-		System.out.println("lista 1->" + lista.toString());
+		lista.SomarElemMaior();
+		System.out.println(lista.toString());
+
 	}
 
 }

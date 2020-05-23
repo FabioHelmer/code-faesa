@@ -273,6 +273,144 @@ public class ListaSimples {
 		return true;
 	}
 
+	public ListaSimples inverteLista() {
+		ListaSimples listaSimples = new ListaSimples();
+		No atual = this.prim;
+
+		for (int i = 0; i < this.quantNos; i++) {
+			listaSimples.addNoComeco(atual.getInfo());
+			atual = atual.getProx();
+		}
+		return listaSimples;
+
+	}
+
+	public void insereListaNaLista(ListaSimples listaSimples, int n) {
+		if (n <= this.quantNos) {
+			if (n == this.quantNos) {
+				this.concListas(listaSimples);
+				this.ult = listaSimples.getUlt();
+			} else {
+				No atual = this.prim;
+
+				for (int i = 1; i < n; i++) {
+					atual = atual.getProx();
+				}
+
+				listaSimples.getUlt().setProx(atual.getProx());
+				atual.setProx(listaSimples.getPrim());
+				this.quantNos += listaSimples.getQuantNos();
+
+			}
+		}
+
+	}
+
+	public void inserirSomaDeImparesFinal() {
+		if (!this.isVazia()) {
+			int soma = 0;
+			int quantElem = 0;
+			No atual = this.prim;
+			while (atual != null) {
+				if (atual.getInfo().getChave() % 2 != 0) {
+					soma += atual.getInfo().getChave();
+					quantElem++;
+				}
+				atual = atual.getProx();
+			}
+			if (quantElem > 0) {
+				No novoNo = new No(new Item(soma / quantElem));
+				this.ult.setProx(novoNo);
+				this.ult = novoNo;
+				this.quantNos++;
+			}
+		}
+	}
+
+	public void separarMaiorQueXDeMenores(ListaSimples l2, ListaSimples l3, int x) {
+
+		No atual = this.prim;
+
+		while (atual != null) {
+			if (atual.getInfo().getChave() >= x) {
+				l3.add(atual.getInfo());
+				l3.quantNos++;
+			} else {
+				l2.add(atual.getInfo());
+				l2.quantNos++;
+			}
+			atual = atual.getProx();
+			this.quantNos--;
+		}
+
+		this.prim = null;
+		this.ult = null;
+
+	}
+
+	/*
+	 * G21DI2- Dada a Lista Linear Simplesmente Encadeada contendo números inteiros,
+	 * faça um método que caminhe na lista somando os elementos que maiores que o
+	 * valor 100. Depois que percorreu toda a lista, altere o valor do último
+	 * elemento da lista pelo valor da soma efetuada.
+	 */
+
+	public boolean SomarElemMaior() {
+
+		if (this.isVazia()) {
+			return false;
+		} else {
+			No noAtual = this.prim;
+			int soma = 0;
+			while (noAtual != null) {
+				if (noAtual.getInfo().getChave() > 100) {
+					soma += noAtual.getInfo().getChave();
+				}
+				noAtual = noAtual.getProx();
+			}
+
+			noAtual = this.prim;
+			for (int i = 0; i < this.quantNos - 1; i++) {
+
+				noAtual = noAtual.getProx();
+			}
+
+			if (soma > 0) {
+				No novoNo = new No(new Item(soma));
+				noAtual.setProx(novoNo);
+				this.ult = novoNo;
+				this.quantNos++;
+			}
+			return true;
+		}
+
+	}
+
+	/*
+	 * G22DI4-Escreva um método que a partir de uma Lista Simplesmente Encadeada
+	 * denominada L1 (this – objeto do método), identifique nesta lista todos os
+	 * alunos da Engenharia de Produção e insira-os em uma outra Lista Simplesmente
+	 * Encadeada denominada L2. Considerações: A lista L1 não está vazia e a L2 já
+	 * está instanciada e vazia (será passada por parâmetro); Se o valor do campo
+	 * chave for maior do que 1000 são alunos do curso da engenharia de produção; A
+	 * inserção na lista L2 será no início da estrutura (antes do primeiro). Não
+	 * será necessário remover alunos da L1.
+	 */
+
+	public ListaSimples transferirAlunos(ListaSimples l2) {
+		No atual = this.prim;
+
+		while (atual != null) {
+			if (atual.getInfo().getChave() > 1000) {
+				l2.addNoComeco(new Item(atual.getInfo().getChave()));
+				l2.quantNos++;
+			}
+
+			atual = atual.getProx();
+		}
+		return l2;
+	}
+
 	// mostra o conteudo da lista
 	@Override
 	public String toString() {
